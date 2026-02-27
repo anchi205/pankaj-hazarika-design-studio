@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial & Institutional | P Hazarika Design Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { serif: ['Cormorant Garamond', 'serif'], sans: ['Inter', 'system-ui', 'sans-serif'] } } } };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-paper: #f7f5f0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-paper); color: #0b0b0b; }
+        .serif { font-family: 'Cormorant Garamond', serif; }
+        .project-card { transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; transform: translateY(18px); }
+        .visible { opacity: 1; transform: translateY(0); }
+        .image-placeholder { background: #f0f0f0; position: relative; overflow: hidden; }
+        .image-placeholder::after { content: "P Hazarika Studio"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #ccc; }
+        .project-thumb { position: relative; overflow: hidden; }
+        .project-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .nav-scrolled { background-color: rgba(0,0,0,0.82); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    </style>
+</head>
+<body class="selection:bg-zinc-200 pt-20">
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-10 py-6 flex justify-between items-center text-white bg-black shadow-md">
+        <a href="index.html" class="group inline-flex items-baseline gap-3">
+            <span class="serif text-xl md:text-2xl italic font-light tracking-wide">P Hazarika</span>
+            <span class="hidden sm:block text-[10px] tracking-[0.45em] uppercase text-white/70">Design Studio</span>
+        </a>
+        <div class="hidden md:flex gap-12 text-[10px] tracking-[0.35em] uppercase opacity-70">
+            <a href="index.html#work" class="hover:opacity-100 transition">Work</a>
+            <a href="index.html#capabilities" class="hover:opacity-100 transition">Capabilities</a>
+            <a href="index.html#studio" class="hover:opacity-100 transition">Studio</a>
+            <a href="index.html#contact" class="hover:opacity-100 transition">Contact</a>
+        </div>
+    </nav>
+
+    <section class="py-20 md:py-28 px-6 md:px-10 max-w-7xl mx-auto">
+        <a href="index.html#capabilities" class="inline-block text-[10px] tracking-[0.35em] uppercase text-zinc-500 hover:text-zinc-900 mb-8">← Capabilities</a>
+        <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 border-b border-black/10 pb-12">
+            <div>
+                <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">Category</div>
+                <h1 class="serif text-5xl md:text-6xl italic font-light mt-4">Industrial & Institutional</h1>
+                <p class="text-zinc-500 text-xs mt-4 uppercase tracking-[0.35em]">Factories, warehouses, institutional</p>
+            </div>
+            <div id="page-counter" class="text-zinc-400 text-6xl font-light serif">01 <span class="text-xl">/ 01</span></div>
+        </div>
+        <div id="project-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 md:gap-x-12 gap-y-16 md:gap-y-24"></div>
+        <div class="mt-20 flex justify-center items-center gap-16 border-t border-black/10 pt-16">
+            <button onclick="prev()" id="prevBtn" class="flex items-center gap-4 text-[10px] tracking-[0.35em] uppercase hover:text-zinc-500 disabled:opacity-20 transition"><span class="text-xl">←</span> Prev</button>
+            <div id="dots" class="flex gap-4"></div>
+            <button onclick="next()" id="nextBtn" class="flex items-center gap-4 text-[10px] tracking-[0.35em] uppercase hover:text-zinc-500 disabled:opacity-20 transition">Next <span class="text-xl">→</span></button>
+        </div>
+    </section>
+
+    <footer class="py-16 px-6 md:px-10 border-t border-black/10">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-[11px] tracking-[0.35em] uppercase text-zinc-500">
+            <div>
+                <p class="text-zinc-900 mb-4 font-bold">Inquiries</p>
+                <a href="mailto:hazarika.pankaj2@gmail.com" class="lowercase italic serif text-2xl tracking-normal text-zinc-900">hazarika.pankaj2@gmail.com</a>
+                <p class="mt-4 font-semibold text-zinc-600">+91 9958322388 · 0124-4114200</p>
+            </div>
+            <div><p class="text-zinc-900 mb-4 font-bold">Office</p><p class="leading-relaxed">346, Basement Floor, Sector-38, Gurugram</p></div>
+            <div class="md:text-right"><p class="text-zinc-900 mb-4 font-bold">Legal</p><p>GST: 06AUEPB8625L1ZJ</p><p>UDYAM-HR-05-0033178</p></div>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden">
+        <button id="lightbox-backdrop" class="absolute inset-0 bg-black/80" aria-label="Close"></button>
+        <div class="relative h-full w-full flex items-center justify-center p-4">
+            <div class="relative w-full max-w-5xl">
+                <div class="flex justify-between mb-3 text-white/80 text-[10px] tracking-[0.3em] uppercase"><span id="lightbox-title">Project</span><span id="lightbox-counter">1 / 1</span></div>
+                <div class="relative bg-black/30 border border-white/10 overflow-hidden">
+                    <img id="lightbox-img" alt="" class="w-full max-h-[80vh] object-contain bg-black" />
+                    <button id="lightbox-prev" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 grid place-items-center text-white/80 hover:text-white border border-white/20 bg-black/30" aria-label="Previous">←</button>
+                    <button id="lightbox-next" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 grid place-items-center text-white/80 hover:text-white border border-white/20 bg-black/30" aria-label="Next">→</button>
+                    <button id="lightbox-close" class="absolute right-3 top-3 w-10 h-10 grid place-items-center text-white/80 hover:text-white border border-white/20 bg-black/30" aria-label="Close">✕</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const projectImages = {"01":["images/project-01-2.png","images/project-01.jpg"],"02":["images/project-02.png"],"03":["images/project-03.png"],"04":["images/project-04.png","images/project-04-2.png"],"05":["images/project-05.png","images/project-05-2.png","images/project-05-3.png","images/project-05-4.png","images/project-05-5.png","images/project-05-6.png","images/project-05-7.png","images/project-05-8.png","images/project-05-9.png","images/project-05-10.png"],"06":["images/project-06.png"],"07":["images/project-07.png","images/project-07-2.png"],"08":["images/project-08.png","images/project-08-2.png"],"09":["images/project-09.png","images/project-09-2.png","images/project-09-3.png"],"10":["images/project-10.png","images/project-10-2.png"],"11":["images/project-11.png","images/project-11-2.png"],"12":["images/project-12.png","images/project-12-2.png"],"13":["images/project-13.png"],"14":["images/project-14.png"],"15":["images/project-15.png","images/project-15-2.png"],"16":["images/project-16.png","images/project-16-2.png"],"17":["images/project-17.png","images/project-17-2.png","images/project-17-3.png","images/project-17-4.png","images/project-17-5.png"],"18":["images/project-18.png","images/project-18-2.png","images/project-18-3.png"],"19":["images/project-19-1.png","images/project-19-2.png","images/project-19-3.png","images/project-19-4.png","images/project-19-5.png","images/project-19-6.png"],"20":["images/project-20.png","images/project-20-2.png","images/project-20-3.png","images/project-20-4.png"],"21":["images/project-21.png"],"22":["images/project-22.png","images/project-22-2.png","images/project-22-3.png","images/project-22-4.png"],"23":["images/project-23-1.png","images/project-23-2.png","images/project-23-3.png","images/project-23-4.png"],"24":["images/project-24.png"],"25":["images/project-25.png"],"26":["images/project-26.png","images/project-26-2.png"],"27":["images/project-27-1.png","images/project-27-2.png","images/project-27-3.png","images/project-27-4.png","images/project-27-5.png","images/project-27-6.png"],"28":["images/project-28.png"],"29":["images/project-29.png","images/project-29-2.png"],"30":["images/project-30.png"],"31":["images/project-31.jpeg"]};
+        const categoryProjects = [
+            { id: "12", title: "Factory Building, Manesar", type: "Industrial", loc: "Plot 175, Sector-8, Manesar, Gurugram", info: "1012 sqm" }
+        ];
+        let page = 0;
+        const perPage = 6;
+        let activeProject = null, activeImages = [], activeIndex = 0;
+        function openLightbox(projectId) {
+            const imgs = projectImages[projectId] || [];
+            if (!imgs.length) return;
+            activeProject = projectId; activeImages = imgs; activeIndex = 0;
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            updateLightbox();
+        }
+        function closeLightbox() { document.getElementById('lightbox').classList.add('hidden'); document.body.style.overflow = ''; activeProject = null; activeImages = []; activeIndex = 0; }
+        function updateLightbox() {
+            const src = activeImages[activeIndex];
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-img').alt = 'Project ' + activeProject + ' image ' + (activeIndex + 1);
+            document.getElementById('lightbox-title').textContent = 'Project ' + activeProject;
+            document.getElementById('lightbox-counter').textContent = (activeIndex + 1) + ' / ' + activeImages.length;
+            document.getElementById('lightbox-prev').disabled = activeIndex === 0;
+            document.getElementById('lightbox-next').disabled = activeIndex === activeImages.length - 1;
+        }
+        function lightboxNext() { if (activeIndex < activeImages.length - 1) { activeIndex++; updateLightbox(); } }
+        function lightboxPrev() { if (activeIndex > 0) { activeIndex--; updateLightbox(); } }
+        function render() {
+            const totalPages = Math.max(1, Math.ceil(categoryProjects.length / perPage));
+            if (page > totalPages - 1) page = Math.max(0, totalPages - 1);
+            const start = page * perPage;
+            const items = categoryProjects.slice(start, start + perPage);
+            const grid = document.getElementById('project-grid');
+            grid.innerHTML = items.map(p => {
+                const imgs = projectImages[p.id] || [];
+                return `<button class="project-card visible text-left group" onclick="openLightbox('${p.id}')" ${!imgs.length ? 'disabled' : ''} aria-label="Open Project ${p.id} gallery">
+                    <div class="aspect-[3/4] mb-7 border border-black/10 bg-white ${imgs.length ? 'project-thumb' : 'image-placeholder'}">
+                        ${imgs.length ? `<img src="${imgs[0]}" alt="Project ${p.id} preview" loading="lazy" class="transition duration-700 group-hover:scale-[1.03]" />` : ''}
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0 opacity-80"></div>
+                        ${imgs.length > 1 ? `<div class="absolute top-3 right-3 border border-white/25 bg-black/40 text-white text-[9px] tracking-[0.35em] uppercase px-3 py-2">${imgs.length} Photos</div>` : ''}
+                    </div>
+                    <div>
+                        <span class="text-[9px] tracking-[0.35em] uppercase text-zinc-500">Project ${p.id} — ${p.type}</span>
+                        <h3 class="serif text-2xl mt-3 font-light italic group-hover:opacity-80 transition">${p.title}</h3>
+                        <p class="text-xs text-zinc-600 mt-2 uppercase tracking-[0.35em]">${p.loc} • ${p.info}</p>
+                    </div>
+                </button>`;
+            }).join('');
+            document.getElementById('page-counter').innerHTML = '0' + (page + 1) + ' <span class="text-xl">/ ' + String(totalPages).padStart(2, '0') + '</span>';
+            document.getElementById('prevBtn').disabled = page === 0;
+            document.getElementById('nextBtn').disabled = page === totalPages - 1;
+            document.getElementById('dots').innerHTML = Array.from({ length: totalPages }).map((_, i) => `<div class="w-1 h-1 rounded-full ${i === page ? 'bg-zinc-900' : 'bg-zinc-200'}"></div>`).join('');
+            document.querySelectorAll('.project-card').forEach((el, i) => { el.style.transitionDelay = Math.min(i * 70, 420) + 'ms'; });
+        }
+        function next() { const totalPages = Math.max(1, Math.ceil(categoryProjects.length / perPage)); if (page >= totalPages - 1) return; page++; render(); window.scrollTo(0, 0); }
+        function prev() { if (page === 0) return; page--; render(); window.scrollTo(0, 0); }
+        document.getElementById('lightbox-backdrop').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox-next').addEventListener('click', lightboxNext);
+        document.getElementById('lightbox-prev').addEventListener('click', lightboxPrev);
+        window.addEventListener('keydown', e => { if (!document.getElementById('lightbox').classList.contains('hidden')) { if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') lightboxNext(); if (e.key === 'ArrowLeft') lightboxPrev(); } });
+        render();
+    </script>
+</body>
+</html>

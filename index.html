@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P Hazarika Design Studio | Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind (CDN) theme tweaks for a more editorial look
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-paper: #f7f5f0; --ink: #0b0b0b; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-paper); color: var(--ink); }
+        .serif { font-family: 'Cormorant Garamond', serif; }
+
+        .project-card { transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; transform: translateY(18px); }
+        .visible { opacity: 1; transform: translateY(0); }
+
+        .image-placeholder { background: #f0f0f0; position: relative; overflow: hidden; }
+        .image-placeholder::after { content: "P Hazarika Studio"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #ccc; }
+        .project-thumb { position: relative; overflow: hidden; }
+        .project-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .grain::before{
+            content:"";
+            position:absolute; inset:0;
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+            mix-blend-mode:overlay;
+            opacity:.18;
+            pointer-events:none;
+        }
+
+        .nav-shell {
+            transition: background-color 400ms ease, backdrop-filter 400ms ease, box-shadow 400ms ease, border-color 400ms ease;
+        }
+        .nav-scrolled {
+            background-color: rgba(0,0,0,0.82);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .project-card { transition: none; }
+            .nav-shell { transition: none; }
+        }
+    </style>
+</head>
+<body class="selection:bg-zinc-200">
+
+    <nav class="nav-shell fixed w-full z-50 px-6 md:px-10 py-6 flex justify-between items-center text-white">
+        <a href="#" class="group inline-flex items-baseline gap-3">
+            <div class="serif text-xl md:text-2xl italic font-light tracking-wide text-white">
+                P Hazarika
+            </div>
+            <div class="hidden sm:block text-[10px] tracking-[0.45em] uppercase text-white/70 group-hover:text-white/90 transition">
+                Design Studio
+            </div>
+        </a>
+        <div class="hidden md:flex gap-12 text-[10px] tracking-[0.35em] uppercase opacity-70">
+            <a href="#work" class="hover:opacity-100 transition">Work</a>
+            <a href="#capabilities" class="hover:opacity-100 transition">Capabilities</a>
+            <a href="#studio" class="hover:opacity-100 transition">Studio</a>
+            <a href="#contact" class="hover:opacity-100 transition">Contact</a>
+        </div>
+    </nav>
+
+    <header class="min-h-screen bg-zinc-950 relative overflow-hidden grain">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.08),rgba(0,0,0,0)_55%)]"></div>
+        <div class="absolute inset-0 opacity-55 bg-[url('images/project-14.png')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90"></div>
+
+        <div class="relative z-10 min-h-screen max-w-7xl mx-auto px-6 md:px-10 pt-28 pb-20 flex flex-col justify-end">
+            <div class="max-w-3xl">
+                <div class="text-[10px] tracking-[0.45em] uppercase text-white/70">Architecture • Interiors • Hospitality</div>
+                <h1 class="serif text-white text-6xl md:text-8xl italic font-light leading-[0.95] mt-6">
+                    Architecture <br class="hidden md:block" />that breathes
+                </h1>
+                <p class="text-white/70 mt-8 max-w-xl leading-relaxed text-sm">
+                    Quietly bold, detail-driven spaces that balance function, atmosphere, and craft.
+                </p>
+                <div class="mt-10 flex items-center gap-4">
+                    <a href="#work" class="inline-flex items-center gap-3 bg-white text-zinc-950 px-6 py-3 text-[10px] tracking-[0.35em] uppercase hover:bg-white/90 transition">
+                        View archive <span class="text-base">→</span>
+                    </a>
+                    <a href="#contact" class="inline-flex items-center gap-3 border border-white/30 text-white px-6 py-3 text-[10px] tracking-[0.35em] uppercase hover:bg-white/10 transition">
+                        Contact
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-16 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6 text-white/70">
+                <div>
+                    <div class="text-[10px] tracking-[0.35em] uppercase">Experience</div>
+                    <div class="serif text-3xl italic text-white mt-2">15+ yrs</div>
+                </div>
+                <div>
+                    <div class="text-[10px] tracking-[0.35em] uppercase">Projects</div>
+                    <div class="serif text-3xl italic text-white mt-2">150+</div>
+                </div>
+                <div>
+                    <div class="text-[10px] tracking-[0.35em] uppercase">Base</div>
+                    <div class="serif text-3xl italic text-white mt-2">Gurugram</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="principal" class="py-28 md:py-32 bg-[color:var(--bg-paper)]">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                <div class="lg:col-span-5">
+                    <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">Principal</div>
+                    <h2 class="serif text-5xl md:text-6xl italic font-light mt-4">Architect Pankaj Hazarika</h2>
+                    <div class="mt-10 border border-black/10 bg-white overflow-hidden">
+                        <div class="aspect-[4/3] bg-[url('images/project-01-2.png')] bg-cover bg-center"></div>
+                        <div class="px-8 py-7">
+                            <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">Practice</div>
+                            <div class="serif text-2xl italic font-light mt-2">15 years • 150+ projects</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="border border-black/10 bg-white p-8 md:p-10">
+                        <p class="text-zinc-700 text-sm leading-relaxed">
+                            Ar. Pankaj Hazarika is a recognized architect and interior designer with projects ranging from hotels & resorts, high end residential villas, builder floors, restaurants, commercial properties and hospitality projects. He works with an aim of mastering all aspects and fulfilling requirements of clients and associates.
+                        </p>
+                        <p class="text-zinc-700 text-sm leading-relaxed mt-6">
+                            For over a decade the firm is consistently recognized for its business acumen and its variety of innovative design solutions that impeccably blend functional and aesthetic needs.
+                        </p>
+
+                        <div class="mt-10 border-t border-black/10 pt-8">
+                            <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">Major clients</div>
+                            <p class="text-zinc-700 text-sm leading-relaxed mt-4">
+                                M2k Developer, Today Homz, The Hans Foundation, Esteem Consultants Pvt Ltd, Rider Fininvest Pvt Ltd, Value Homz, DHR Infrastructure, Olive Group, Sun Bright Manpower Solutions Pvt. Ltd. and many renowned builders, clients and professionals and their MEP consultants.
+                            </p>
+                        </div>
+
+                        <div class="mt-10 border-t border-black/10 pt-8">
+                            <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">Portfolio</div>
+                            <p class="text-zinc-700 text-sm leading-relaxed mt-4">
+                                The firm have done 150+ projects in residential, commercial, industrial, warehouse, institutional, hotels, hospitals and interior projects till date in their 15 years of work experience.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="capabilities" class="py-28 md:py-32">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <div class="flex flex-col md:flex-row justify-between items-baseline gap-10 border-b border-black/10 pb-12">
+                <div>
+                    <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">Services</div>
+                    <h2 class="serif text-5xl md:text-6xl italic font-light mt-4">Capabilities</h2>
+                </div>
+                <p class="text-zinc-600 text-sm leading-relaxed max-w-xl">
+                    End-to-end design with a strong focus on proportion, material honesty, and buildable detail.
+                </p>
+            </div>
+
+            <div class="mt-14 grid md:grid-cols-2 gap-6">
+                <a href="hospitality.html" class="group text-left relative overflow-hidden border border-black/10 bg-white block">
+                    <div class="absolute inset-0 opacity-30 bg-[url('images/project-13.png')] bg-cover bg-center transition duration-700 group-hover:scale-105"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/30"></div>
+                    <div class="relative p-10">
+                        <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">01</div>
+                        <div class="serif text-3xl italic font-light mt-4">Hospitality & Hotels</div>
+                        <p class="text-zinc-600 text-sm mt-4 leading-relaxed max-w-md">
+                            Hotels, resorts, guest houses and service apartments with a focus on arrival, circulation and atmosphere.
+                        </p>
+                    </div>
+                </a>
+                <a href="residential.html" class="group text-left relative overflow-hidden border border-black/10 bg-white block">
+                    <div class="absolute inset-0 opacity-30 bg-[url('images/project-04.png')] bg-cover bg-center transition duration-700 group-hover:scale-105"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/30"></div>
+                    <div class="relative p-10">
+                        <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">02</div>
+                        <div class="serif text-3xl italic font-light mt-4">High-end Residential</div>
+                        <p class="text-zinc-600 text-sm mt-4 leading-relaxed max-w-md">
+                            Luxury villas, builder floors and gated-community homes tailored to family, light and privacy.
+                        </p>
+                    </div>
+                </a>
+                <a href="commercial.html" class="group text-left relative overflow-hidden border border-black/10 bg-white block">
+                    <div class="absolute inset-0 opacity-30 bg-[url('images/project-20.png')] bg-cover bg-center transition duration-700 group-hover:scale-105"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/30"></div>
+                    <div class="relative p-10">
+                        <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">03</div>
+                        <div class="serif text-3xl italic font-light mt-4">Commercial & Workspaces</div>
+                        <p class="text-zinc-600 text-sm mt-4 leading-relaxed max-w-md">
+                            Offices, retail and mixed-use developments with clear planning, expressive facades and workplace comfort.
+                        </p>
+                    </div>
+                </a>
+                <a href="industrial.html" class="group text-left relative overflow-hidden border border-black/10 bg-white block">
+                    <div class="absolute inset-0 opacity-30 bg-[url('images/project-12.png')] bg-cover bg-center transition duration-700 group-hover:scale-105"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/30"></div>
+                    <div class="relative p-10">
+                        <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">04</div>
+                        <div class="serif text-3xl italic font-light mt-4">Industrial & Institutional</div>
+                        <p class="text-zinc-600 text-sm mt-4 leading-relaxed max-w-md">
+                            Factories, warehouses and institutional buildings resolved for efficiency, movement and durability.
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="py-28 md:py-32 px-6 md:px-10 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 md:mb-24 border-b border-black/10 pb-12">
+            <div>
+                <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">Archive</div>
+                <h2 class="serif text-5xl md:text-6xl italic font-light mt-4">Selected Works</h2>
+                <p class="text-zinc-500 text-xs mt-4 uppercase tracking-[0.35em]">31 projects</p>
+            </div>
+            <div id="page-counter" class="text-zinc-400 text-6xl font-light serif">01 <span class="text-xl">/ 05</span></div>
+        </div>
+
+        <div id="project-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 md:gap-x-12 gap-y-16 md:gap-y-24">
+            </div>
+
+        <div class="mt-20 md:mt-32 flex justify-center items-center gap-16 border-t border-black/10 pt-16">
+            <button onclick="prev()" id="prevBtn" class="group flex items-center gap-4 text-[10px] tracking-[0.35em] uppercase hover:text-zinc-500 disabled:opacity-20 transition">
+                <span class="text-xl">←</span> Prev
+            </button>
+            <div id="dots" class="flex gap-4"></div>
+            <button onclick="next()" id="nextBtn" class="group flex items-center gap-4 text-[10px] tracking-[0.35em] uppercase hover:text-zinc-500 disabled:opacity-20 transition">
+                Next <span class="text-xl">→</span>
+            </button>
+        </div>
+    </section>
+
+    <section id="studio" class="py-28 md:py-32 bg-white border-y border-black/10">
+        <div class="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-14 md:gap-20 items-center">
+            <div class="serif text-4xl md:text-5xl leading-relaxed italic font-light">
+                "We provide innovative design solutions that impeccably blend functional and aesthetic needs."
+            </div>
+            <div class="text-zinc-600 text-sm leading-loose">
+                <p class="mb-0">Led by Ar. Pankaj Hazarika (COA: CA/2007/40443), the studio specializes in luxury hospitality and high-end residential architecture. Based in Gurugram, we have successfully partnered with major developers like M2k and Today Homz.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="major-projects" class="py-24 md:py-28 bg-[color:var(--bg-paper)]">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <div class="flex flex-col md:flex-row justify-between items-baseline gap-10 border-b border-black/10 pb-10">
+                <div>
+                    <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">Selected</div>
+                    <h2 class="serif text-5xl md:text-6xl italic font-light mt-4">Major Projects</h2>
+                </div>
+                <p class="text-zinc-600 text-sm leading-relaxed max-w-xl">
+                    A selection of large-scale hospitality, residential, commercial and institutional work delivered by the studio.
+                </p>
+            </div>
+
+            <div class="mt-10 md:mt-12 grid md:grid-cols-2 gap-10 text-sm text-zinc-700 leading-relaxed">
+                <ol class="space-y-4 list-decimal list-inside">
+                    <li>Commercial Building (Hotel) plot admeasuring 700 sqyds at D-52, Uppal Southend, Gurugram.</li>
+                    <li>Service Apartment at House no.151, Khewat/khata no. 558/729, Kirti Nagar, Gurugram.</li>
+                    <li>Office building at plot admeasuring 500 sqyds at plot no.1504, Sector-46, Gurugram.</li>
+                    <li>Residence at plot no. K-22, South City-1, Gurugram.</li>
+                    <li>Residence (Builder floor) at plot no. K-42, South City-1, Gurugram.</li>
+                    <li>Residence (Builder floor) at plot no. K-38, South City-1, Gurugram.</li>
+                    <li>Residence (Builder floor) at plot no. M-122, South City-1, Gurugram.</li>
+                    <li>Residence (Builder floor) at plot no. A-345, South City-1, Gurugram.</li>
+                    <li>Restaurant at Rohilapur, near Sector-132, Noida.</li>
+                    <li>Residence at plot no. A-14, Sector-70A, Gurugram.</li>
+                    <li>Residence at plot admeasuring 700 sqyds at patta no.-886, Dag no. 1752, ward no-25, Dispur, Guwahati, Assam.</li>
+                    <li>Residence (Builder floor) at plot no. 26, D-block, DLF-1 (500 sqyds), Gurugram.</li>
+                    <li>Office interior (4000 + 4000 sqft area) for Rider Fininvest Pvt. Ltd at plot no. 81, Sector-44, Gurugram.</li>
+                    <li>Guest house at plot no. 543, Sector-31, Gurugram.</li>
+                    <li>Shopping complex at plot no. 482/483, khasra no. 788, Krishna Colony, Gurugram.</li>
+                </ol>
+                <ol start="16" class="space-y-4 list-decimal list-inside">
+                    <li>Guest house at plot admeasuring 500 sqyds, plot no. 3157, Sector-46, Gurugram.</li>
+                    <li>Hospital renovation and extension work at Tizit, Mon district, Nagaland.</li>
+                    <li>Diagnosis Centre at Biharsharif, Bihar.</li>
+                    <li>Factory Building at plot no. 175, Sector-8, Manesar, Gurugram.</li>
+                    <li>Factory Building at Sector-37-II, P-703, Gurugram.</li>
+                    <li>Office interior (5000 sqft) at plot no. 86, Sector-44, Gurugram.</li>
+                    <li>Residence (Builder floor) at plot no. M-122, South City-1 (275 sqyds), Gurugram.</li>
+                    <li>Farm House at Jamalpur, near Dhauj Sohna, Gurugram.</li>
+                    <li>Farm House at Aravalli Hills, Gurugram.</li>
+                    <li>Commercial building at plot no. D-313, Sushant Lok-II, Gurugram.</li>
+                    <li>Villa at Lemon Street, plot no. 12, Gurugram.</li>
+                    <li>Residence at plot no. A-75, Meera Bagh, Delhi.</li>
+                    <li>Residence at plot no. D-341, Defence Colony, New Delhi.</li>
+                    <li>Naturopathy &amp; Yoga wellness centre on khasra no.57//17/12,22/2,23/2,24,25,77//2,3,4,89/1 at village Gairatpur Bass, Tehsil Badshahpur, Gurugram.</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-20 px-6 md:px-10 bg-[color:var(--bg-paper)]">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-[11px] tracking-[0.35em] uppercase text-zinc-500">
+            <div>
+                <p class="text-zinc-900 mb-4 font-bold">Inquiries</p>
+                <a href="mailto:hazarika.pankaj2@gmail.com" class="hover:text-zinc-900 lowercase italic serif text-2xl tracking-normal text-zinc-900">hazarika.pankaj2@gmail.com</a>
+                <p class="mt-4 font-semibold text-zinc-600">+91 9958322388</p>
+                <p class="mt-2 font-semibold text-zinc-600">0124-4114200</p>
+            </div>
+            <div>
+                <p class="text-zinc-900 mb-4 font-bold">Office</p>
+                <p class="leading-relaxed">346, Basement Floor,<br>Sector-38, Gurugram</p>
+            </div>
+            <div class="md:text-right">
+                <p class="text-zinc-900 mb-4 font-bold">Legal</p>
+                <p>GST: 06AUEPB8625L1ZJ</p>
+                <p>UDYAM-HR-05-0033178</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden">
+        <button id="lightbox-backdrop" class="absolute inset-0 bg-black/80" aria-label="Close gallery"></button>
+        <div class="relative h-full w-full flex items-center justify-center p-4">
+            <div class="relative w-full max-w-5xl">
+                <div class="flex items-center justify-between mb-3 text-white/80 text-[10px] tracking-[0.3em] uppercase">
+                    <div id="lightbox-title" class="opacity-80">Project</div>
+                    <div id="lightbox-counter" class="opacity-80">1 / 1</div>
+                </div>
+                <div class="relative bg-black/30 border border-white/10 overflow-hidden">
+                    <img id="lightbox-img" alt="" class="w-full max-h-[80vh] object-contain bg-black" />
+                    <button id="lightbox-prev" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 grid place-items-center text-white/80 hover:text-white border border-white/20 bg-black/30 hover:bg-black/50 transition disabled:opacity-20" aria-label="Previous image">←</button>
+                    <button id="lightbox-next" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 grid place-items-center text-white/80 hover:text-white border border-white/20 bg-black/30 hover:bg-black/50 transition disabled:opacity-20" aria-label="Next image">→</button>
+                    <button id="lightbox-close" class="absolute right-3 top-3 w-10 h-10 grid place-items-center text-white/80 hover:text-white border border-white/20 bg-black/30 hover:bg-black/50 transition" aria-label="Close gallery">✕</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Images per project (derived from /images folder)
+        const projectImages = {
+            "01": ["images/project-01-2.png", "images/project-01.jpg"],
+            "02": ["images/project-02.png"],
+            "03": ["images/project-03.png"],
+            "04": ["images/project-04.png", "images/project-04-2.png"],
+            "05": ["images/project-05.png", "images/project-05-2.png", "images/project-05-3.png", "images/project-05-4.png", "images/project-05-5.png", "images/project-05-6.png", "images/project-05-7.png", "images/project-05-8.png", "images/project-05-9.png", "images/project-05-10.png"],
+            "06": ["images/project-06.png"],
+            "07": ["images/project-07.png", "images/project-07-2.png"],
+            "08": ["images/project-08.png", "images/project-08-2.png"],
+            "09": ["images/project-09.png", "images/project-09-2.png", "images/project-09-3.png"],
+            "10": ["images/project-10.png", "images/project-10-2.png"],
+            "11": ["images/project-11.png", "images/project-11-2.png"],
+            "12": ["images/project-12.png", "images/project-12-2.png"],
+            "13": ["images/project-13.png"],
+            "14": ["images/project-14.png"],
+            "15": ["images/project-15.png", "images/project-15-2.png"],
+            "16": ["images/project-16.png", "images/project-16-2.png"],
+            "17": ["images/project-17.png", "images/project-17-2.png", "images/project-17-3.png", "images/project-17-4.png", "images/project-17-5.png"],
+            "18": ["images/project-18.png", "images/project-18-2.png", "images/project-18-3.png"],
+            "19": ["images/project-19-1.png", "images/project-19-2.png", "images/project-19-3.png", "images/project-19-4.png", "images/project-19-5.png", "images/project-19-6.png"],
+            "20": ["images/project-20.png", "images/project-20-2.png", "images/project-20-3.png", "images/project-20-4.png"],
+            "21": ["images/project-21.png"],
+            "22": ["images/project-22.png", "images/project-22-2.png", "images/project-22-3.png", "images/project-22-4.png"],
+            "23": ["images/project-23-1.png", "images/project-23-2.png", "images/project-23-3.png", "images/project-23-4.png"],
+            "24": ["images/project-24.png"],
+            "25": ["images/project-25.png"],
+            "26": ["images/project-26.png", "images/project-26-2.png"],
+            "27": ["images/project-27-1.png", "images/project-27-2.png", "images/project-27-3.png", "images/project-27-4.png", "images/project-27-5.png", "images/project-27-6.png"],
+            "28": ["images/project-28.png"],
+            "29": ["images/project-29.png", "images/project-29-2.png"],
+            "30": ["images/project-30.png"],
+            "31": ["images/project-31.jpeg"]
+        };
+
+        // Archive: ordered numerically from Project 01 to Project 31
+        const allProjects = [
+            { id: "01", title: "Office Building, Sector-46", type: "Commercial", loc: "Plot 1504, Sector-46, Gurugram", info: "500 sqyds", category: "commercial" },
+            { id: "02", title: "Residence, A-14", type: "Residential", loc: "Sector-70A, Gurugram", info: "Private residence", category: "residential" },
+            { id: "03", title: "Builder Floor, K-38", type: "Residential", loc: "South City-1, Gurugram", info: "Builder floor", category: "residential" },
+            { id: "04", title: "Residence, K-22", type: "Residential", loc: "South City-1, Gurugram", info: "Builder floor", category: "residential" },
+            { id: "05", title: "Builder Floor, M-122", type: "Residential", loc: "South City-1, Gurugram", info: "275 sqyds, Stilt + 4 Floors", category: "residential" },
+            { id: "06", title: "Villa, Sector-30/33", type: "Residential", loc: "Faridabad", info: "500 sqyds", category: "residential" },
+            { id: "07", title: "Builder Floors, DLF Phase-1", type: "Residential", loc: "Plot 26, Gurugram", info: "500 sqyds, Stilt + 4 Floors", category: "residential" },
+            { id: "08", title: "Villa, Vipul World", type: "Residential", loc: "D-4, Gurugram", info: "500 sqyds", category: "residential" },
+            { id: "09", title: "Guest House, Sector-31", type: "Hospitality", loc: "Plot 543, Gurugram", info: "161.46 sqyds", category: "hospitality" },
+            { id: "10", title: "Guest House, Sector-46", type: "Hospitality", loc: "Plot 3157, Gurugram", info: "500 sqyds", category: "hospitality" },
+            { id: "11", title: "Residence, Esencia", type: "Residential", loc: "C-1067, Sector-67, Gurugram", info: "300 sqyds", category: "residential" },
+            { id: "12", title: "Factory Building, Manesar", type: "Industrial", loc: "Plot 175, Sector-8, Manesar, Gurugram", info: "1012 sqm", category: "industrial" },
+            { id: "13", title: "Hotel, Uppal Southend", type: "Hospitality", loc: "D-52, Uppal Southend, Gurugram", info: "700 sqyds", category: "hospitality" },
+            { id: "14", title: "Residence, Sushant Lok-II", type: "Residential", loc: "D-217, Gurugram", info: "Private villa", category: "residential" },
+            { id: "15", title: "Residence, Malibu Town", type: "Residential", loc: "B.S.-12E, Malibu, Gurugram", info: "310 sqyds", category: "residential" },
+            { id: "16", title: "Residences, Defence Colony & Meera Bagh", type: "Residential", loc: "A-341 Defence Colony & A-75 Meera Bagh, New Delhi", info: "High-end builder floors", category: "residential" },
+            { id: "17", title: "Office Interior, Plot 86", type: "Commercial Interior", loc: "Sector-44, Gurugram", info: "5000 sqft", category: "commercial" },
+            { id: "18", title: "Office Interior, Plot 81", type: "Commercial Interior", loc: "Sector-44, Gurugram", info: "4000 + 4000 sqft", category: "commercial" },
+            { id: "19", title: "Restaurant, Rohilapur", type: "Hospitality Interior", loc: "Near Sector-132, Noida", info: "Restaurant", category: "hospitality" },
+            { id: "20", title: "Blue Leaf Service Apartment", type: "Hospitality Interior", loc: "Noida", info: "Corporate guest house", category: "hospitality" },
+            { id: "21", title: "Commercial Shopping Complex", type: "Commercial", loc: "Gurugram", info: "Completed June 2024", category: "commercial" },
+            { id: "22", title: "Misc. Projects, Gurgaon I", type: "Mixed Use", loc: "Gurugram", info: "Residential / Commercial", category: "commercial" },
+            { id: "23", title: "Misc. Projects, Gurgaon II", type: "Mixed Use", loc: "Gurugram", info: "Residential / Commercial", category: "commercial" },
+            { id: "24", title: "Banquet Hall", type: "Hospitality / Institutional", loc: "Ghaziabad", info: "Events space", category: "hospitality" },
+            { id: "25", title: "Residence, Tower Colony", type: "Residential", loc: "Gurugram", info: "Private residence", category: "residential" },
+            { id: "26", title: "Villa, Lemon Street", type: "Residential", loc: "Plot 12, Gurugram", info: "Villa", category: "residential" },
+            { id: "27", title: "Builder Floor Projects, Gurugram", type: "Residential", loc: "Gurugram", info: "Multiple units", category: "residential" },
+            { id: "28", title: "M2K Spring Floors", type: "Residential", loc: "Mayfield Garden, Gurugram", info: "Row houses", category: "residential" },
+            { id: "29", title: "Today Homes Princeton Floors", type: "Residential", loc: "Mayfield Garden, Gurugram", info: "Row houses", category: "residential" },
+            { id: "30", title: "Service Apartment, Kirti Nagar", type: "Hospitality", loc: "House 151, Kirti Nagar, Gurugram", info: "Service apartments", category: "hospitality" },
+            { id: "31", title: "Project 31", type: "Residential", loc: "Gurugram", info: "Recent work", category: "residential" }
+        ];
+
+        let page = 0;
+        const perPage = 6;
+
+        // Lightbox state
+        let activeProject = null;
+        let activeImages = [];
+        let activeIndex = 0;
+
+        function openLightbox(projectId) {
+            const imgs = projectImages[projectId] || [];
+            if (!imgs.length) return;
+
+            activeProject = projectId;
+            activeImages = imgs;
+            activeIndex = 0;
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            updateLightbox();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+            document.body.style.overflow = '';
+            activeProject = null;
+            activeImages = [];
+            activeIndex = 0;
+        }
+
+        function updateLightbox() {
+            const imgEl = document.getElementById('lightbox-img');
+            const titleEl = document.getElementById('lightbox-title');
+            const counterEl = document.getElementById('lightbox-counter');
+            const prevBtn = document.getElementById('lightbox-prev');
+            const nextBtn = document.getElementById('lightbox-next');
+
+            const src = activeImages[activeIndex];
+            imgEl.src = src;
+            imgEl.alt = `Project ${activeProject} image ${activeIndex + 1}`;
+            titleEl.textContent = `Project ${activeProject}`;
+            counterEl.textContent = `${activeIndex + 1} / ${activeImages.length}`;
+
+            prevBtn.disabled = activeIndex === 0;
+            nextBtn.disabled = activeIndex === activeImages.length - 1;
+        }
+
+        function lightboxNext() {
+            if (activeIndex < activeImages.length - 1) {
+                activeIndex += 1;
+                updateLightbox();
+            }
+        }
+
+        function lightboxPrev() {
+            if (activeIndex > 0) {
+                activeIndex -= 1;
+                updateLightbox();
+            }
+        }
+
+        function render() {
+            const grid = document.getElementById('project-grid');
+            const totalPages = Math.max(1, Math.ceil(allProjects.length / perPage));
+            if (page > totalPages - 1) page = Math.max(0, totalPages - 1);
+
+            const start = page * perPage;
+            const items = allProjects.slice(start, start + perPage);
+
+            grid.innerHTML = items.map(p => `
+                <button class="project-card text-left group" onclick="openLightbox('${p.id}')" ${((projectImages[p.id] || []).length ? "" : "disabled")} aria-label="Open Project ${p.id} gallery">
+                    <div class="aspect-[3/4] mb-7 border border-black/10 bg-white ${((projectImages[p.id] || []).length ? "project-thumb" : "image-placeholder")}">
+                        ${((projectImages[p.id] || []).length
+                            ? `<img src="${projectImages[p.id][0]}" alt="Project ${p.id} preview" loading="lazy" class="transition duration-700 group-hover:scale-[1.03]" />`
+                            : "")}
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0 opacity-80"></div>
+                        ${((projectImages[p.id] || []).length > 1
+                            ? `<div class="absolute top-3 right-3 border border-white/25 bg-black/40 text-white text-[9px] tracking-[0.35em] uppercase px-3 py-2">${projectImages[p.id].length} Photos</div>`
+                            : "")}
+                    </div>
+                    <div>
+                        <span class="text-[9px] tracking-[0.35em] uppercase text-zinc-500">Project ${p.id} — ${p.type}</span>
+                        <h3 class="serif text-2xl mt-3 font-light italic group-hover:opacity-80 transition">${p.title}</h3>
+                        <p class="text-xs text-zinc-600 mt-2 uppercase tracking-[0.35em]">${p.loc} • ${p.info}</p>
+                    </div>
+                </button>
+            `).join('');
+
+            const totalLabel = String(totalPages).padStart(2, '0');
+            document.getElementById('page-counter').innerHTML = `0${page + 1} <span class="text-xl">/ ${totalLabel}</span>`;
+            document.getElementById('prevBtn').disabled = page === 0;
+            document.getElementById('nextBtn').disabled = page === totalPages - 1;
+
+            // Render Dots
+            document.getElementById('dots').innerHTML = Array.from({ length: totalPages }).map((_, i) =>
+                `<div class="w-1 h-1 rounded-full ${i === page ? 'bg-zinc-900' : 'bg-zinc-200'}"></div>`
+            ).join('');
+
+            // Animate cards in (staggered)
+            const cards = Array.from(document.querySelectorAll('.project-card'));
+            cards.forEach((el, idx) => {
+                el.classList.remove('visible');
+                el.style.transitionDelay = `${Math.min(idx * 70, 420)}ms`;
+                requestAnimationFrame(() => el.classList.add('visible'));
+            });
+        }
+
+        function next() {
+            const totalPages = Math.max(1, Math.ceil(allProjects.length / perPage));
+            if (page >= totalPages - 1) return;
+            page++;
+            render();
+            window.scrollTo(0, document.getElementById('work').offsetTop - 100);
+        }
+
+        function prev() {
+            if (page === 0) return;
+            page--;
+            render();
+            window.scrollTo(0, document.getElementById('work').offsetTop - 100);
+        }
+
+        // Lightbox bindings
+        document.getElementById('lightbox-backdrop').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox-next').addEventListener('click', lightboxNext);
+        document.getElementById('lightbox-prev').addEventListener('click', lightboxPrev);
+        window.addEventListener('keydown', (e) => {
+            const lb = document.getElementById('lightbox');
+            if (lb.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') lightboxNext();
+            if (e.key === 'ArrowLeft') lightboxPrev();
+        });
+
+        // Nav scroll state
+        const nav = document.querySelector('nav.nav-shell');
+        window.addEventListener('scroll', () => {
+            const offset = window.scrollY || window.pageYOffset;
+            if (!nav) return;
+            if (offset > 40) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        render();
+    </script>
+</body>
+</html>
