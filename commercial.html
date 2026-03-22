@@ -19,6 +19,21 @@
         .image-placeholder::after { content: "P Hazarika Studio"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #ccc; }
         .project-thumb { position: relative; overflow: hidden; }
         .project-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .project-thumb::after {
+            content: "P HAZARIKA DESIGN STUDIO";
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            font-size: 8px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.65);
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4px 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            z-index: 10;
+        }
         .nav-scrolled { background-color: rgba(0,0,0,0.82); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); }
     </style>
 </head>
@@ -82,15 +97,90 @@
     </div>
 
     <script>
-        const projectImages = {"01":["images/project-01-2.png","images/project-01.jpg"],"02":["images/project-02.png"],"03":["images/project-03.png"],"04":["images/project-04.png","images/project-04-2.png"],"05":["images/project-05.png","images/project-05-2.png","images/project-05-3.png","images/project-05-4.png","images/project-05-5.png","images/project-05-6.png","images/project-05-7.png","images/project-05-8.png","images/project-05-9.png","images/project-05-10.png"],"06":["images/project-06.png"],"07":["images/project-07.png","images/project-07-2.png"],"08":["images/project-08.png","images/project-08-2.png"],"09":["images/project-09.png","images/project-09-2.png","images/project-09-3.png"],"10":["images/project-10.png","images/project-10-2.png"],"11":["images/project-11.png","images/project-11-2.png"],"12":["images/project-12.png","images/project-12-2.png"],"13":["images/project-13.png"],"14":["images/project-14.png"],"15":["images/project-15.png","images/project-15-2.png"],"16":["images/project-16.png","images/project-16-2.png"],"17":["images/project-17.png","images/project-17-2.png","images/project-17-3.png","images/project-17-4.png","images/project-17-5.png"],"18":["images/project-18.png","images/project-18-2.png","images/project-18-3.png"],"19":["images/project-19-1.png","images/project-19-2.png","images/project-19-3.png","images/project-19-4.png","images/project-19-5.png","images/project-19-6.png"],"20":["images/project-20.png","images/project-20-2.png","images/project-20-3.png","images/project-20-4.png"],"21":["images/project-21.png"],"22":["images/project-22.png","images/project-22-2.png","images/project-22-3.png","images/project-22-4.png"],"23":["images/project-23-1.png","images/project-23-2.png","images/project-23-3.png","images/project-23-4.png"],"24":["images/project-24.png"],"25":["images/project-25.png"],"26":["images/project-26.png","images/project-26-2.png"],"27":["images/project-27-1.png","images/project-27-2.png","images/project-27-3.png","images/project-27-4.png","images/project-27-5.png","images/project-27-6.png"],"28":["images/project-28.png"],"29":["images/project-29.png","images/project-29-2.png"],"30":["images/project-30.png"],"31":["images/project-31.jpeg"]};
-        const categoryProjects = [
-            { id: "01", title: "Office Building, Sector-46", type: "Commercial", loc: "Plot 1504, Sector-46, Gurugram", info: "500 sqyds" },
-            { id: "17", title: "Office Interior, Plot 86", type: "Commercial Interior", loc: "Sector-44, Gurugram", info: "5000 sqft" },
-            { id: "18", title: "Office Interior, Plot 81", type: "Commercial Interior", loc: "Sector-44, Gurugram", info: "4000 + 4000 sqft" },
-            { id: "21", title: "Commercial Shopping Complex", type: "Commercial", loc: "Gurugram", info: "Completed June 2024" },
-            { id: "22", title: "Misc. Projects, Gurgaon I", type: "Mixed Use", loc: "Gurugram", info: "Residential / Commercial" },
-            { id: "23", title: "Misc. Projects, Gurgaon II", type: "Mixed Use", loc: "Gurugram", info: "Residential / Commercial" }
+        const projectImages = {
+            "01": ["images/project-01.jpg"],
+            "02": ["images/project-02.png"],
+            "03": ["images/project-03.jpg"],
+            "04": ["images/project-04.png", "images/project-04-2.png"],
+            "05": ["images/project-05.jpg", "images/project-05-2.png", "images/project-05-3.png", "images/project-05-4.png", "images/project-05-5.png", "images/project-05-6.png", "images/project-05-7.png", "images/project-05-8.png", "images/project-05-9.png", "images/project-05-10.png"],
+            "06": ["images/project-06.jpg"],
+            "07": ["images/project-07.png", "images/project-07-2.png"],
+            "08": ["images/project-08.png", "images/project-08-2.jpg"],
+            "09": ["images/project-09.png", "images/project-09-2.png", "images/project-09-3.png"],
+            "10": ["images/project-10.png", "images/project-10-2.png"],
+            "11": ["images/project-11.png", "images/project-11-2.png"],
+            "12": ["images/project-12.jpg", "images/project-12-2.png"],
+            "13": ["images/project-13.png"],
+            "14": ["images/project-14.png"],
+            "15": ["images/project-15.jpg", "images/project-15-2.png"],
+            "16": ["images/project-16.png", "images/project-16-2.jpg"],
+            "17": ["images/project-17.png", "images/project-17-2.png", "images/project-17-3.png", "images/project-17-4.png", "images/project-17-5.png"],
+            "18": ["images/project-18.png", "images/project-18-2.png", "images/project-18-3.png"],
+            "19": ["images/project-19-1.png", "images/project-19-2.png", "images/project-19-3.png", "images/project-19-4.png", "images/project-19-5.png", "images/project-19-6.png"],
+            "20": ["images/project-20.png", "images/project-20-2.png", "images/project-20-3.png", "images/project-20-4.png"],
+            "21": ["images/project-21.png"],
+            "22": ["images/project-22.png", "images/project-22-2.png", "images/project-22-3.png", "images/project-22-4.png"],
+            "23": ["images/project-23-1.png", "images/project-23-2.png", "images/project-23-3.png", "images/project-23-4.png"],
+            "24": ["images/project-24.jpg"],
+            "25": ["images/project-25.jpg"],
+            "26": ["images/project-26.png", "images/project-26-2.png", "images/project-26-3.jpg"],
+            "27": ["images/project-27-1.jpg", "images/project-27-2.jpg", "images/project-27-3.jpg", "images/project-27-4.png", "images/project-27-5.jpg", "images/project-27-6.png"],
+            "28": ["images/project-28.png"],
+            "29": ["images/project-29.png", "images/project-29-2.png"],
+            "30": ["images/project-30.png"],
+            "31": ["images/project-31.jpeg"],
+            "32": ["images/project-32.jpg"],
+            "33": ["images/project-33.jpg"],
+            "34": ["images/project-34.jpg"],
+            "35": ["images/project-35.jpg"],
+            "36": ["images/project-36.jpg"],
+            "37": ["images/project-37.jpg"],
+            "38": ["images/project-38.jpg"],
+        };
+
+        // Archive: ordered numerically from Project 01 to Project 31
+        const allProjects = [
+            { id: "01", title: "Office Building, Sector-46", type: "Commercial", loc: "Plot 1504, Sector-46, Gurugram", info: "500 sqyds", category: "commercial" },
+            { id: "02", title: "Residence, A-14", type: "Residential", loc: "Sector-70A, Gurugram", info: "Private residence", category: "residential" },
+            { id: "03", title: "Builder Floor, K-38", type: "Residential", loc: "South City-1, Gurugram", info: "Builder floor", category: "residential" },
+            { id: "04", title: "Residence, K-22", type: "Residential", loc: "South City-1, Gurugram", info: "Builder floor", category: "residential" },
+            { id: "05", title: "Builder Floor, M-122", type: "Residential", loc: "South City-1, Gurugram", info: "275 sqyds, Stilt + 4 Floors", category: "residential" },
+            { id: "06", title: "Villa, Sector-30/33", type: "Residential", loc: "Faridabad", info: "500 sqyds", category: "residential" },
+            { id: "07", title: "Builder Floors, DLF Phase-1", type: "Residential", loc: "Plot 26, Gurugram", info: "500 sqyds, Stilt + 4 Floors", category: "residential" },
+            { id: "08", title: "Villa, Vipul World", type: "Residential", loc: "D-4, Gurugram", info: "500 sqyds", category: "residential" },
+            { id: "09", title: "Guest House, Sector-31", type: "Hospitality", loc: "Plot 543, Gurugram", info: "161.46 sqyds", category: "hospitality" },
+            { id: "10", title: "Guest House, Sector-46", type: "Hospitality", loc: "Plot 3157, Gurugram", info: "500 sqyds", category: "hospitality" },
+            { id: "11", title: "Residence, Esencia", type: "Residential", loc: "C-1067, Sector-67, Gurugram", info: "300 sqyds", category: "residential" },
+            { id: "12", title: "Factory Building, Manesar", type: "Industrial", loc: "Plot 175, Sector-8, Manesar, Gurugram", info: "1012 sqm", category: "industrial" },
+            { id: "13", title: "Hotel, Uppal Southend", type: "Hospitality", loc: "D-52, Uppal Southend, Gurugram", info: "700 sqyds", category: "hospitality" },
+            { id: "14", title: "Residence, Sushant Lok-II", type: "Residential", loc: "D-217, Gurugram", info: "Private villa", category: "residential" },
+            { id: "15", title: "Residence, Malibu Town", type: "Residential", loc: "B.S.-12E, Malibu, Gurugram", info: "310 sqyds", category: "residential" },
+            { id: "16", title: "Residences, Defence Colony & Meera Bagh", type: "Residential", loc: "A-341 Defence Colony & A-75 Meera Bagh, New Delhi", info: "High-end builder floors", category: "residential" },
+            { id: "17", title: "Office Interior, Plot 86", type: "Commercial Interior", loc: "Sector-44, Gurugram", info: "5000 sqft", category: "commercial" },
+            { id: "18", title: "Office Interior, Plot 81", type: "Commercial Interior", loc: "Sector-44, Gurugram", info: "4000 + 4000 sqft", category: "commercial" },
+            { id: "19", title: "Restaurant, Rohilapur", type: "Hospitality Interior", loc: "Near Sector-132, Noida", info: "Restaurant", category: "hospitality" },
+            { id: "20", title: "Blue Leaf Service Apartment", type: "Hospitality Interior", loc: "Noida", info: "Corporate guest house", category: "hospitality" },
+            { id: "21", title: "Commercial Shopping Complex", type: "Commercial", loc: "Gurugram", info: "Completed June 2024", category: "commercial" },
+            { id: "22", title: "Misc. Projects, Gurgaon I", type: "Mixed Use", loc: "Gurugram", info: "Residential / Commercial", category: "commercial" },
+            { id: "23", title: "Misc. Projects, Gurgaon II", type: "Mixed Use", loc: "Gurugram", info: "Residential / Commercial", category: "commercial" },
+            { id: "24", title: "Banquet Hall", type: "Hospitality / Institutional", loc: "Ghaziabad", info: "Events space", category: "hospitality" },
+            { id: "25", title: "Residence, Tower Colony", type: "Residential", loc: "Gurugram", info: "Private residence", category: "residential" },
+            { id: "26", title: "Villa, Lemon Street", type: "Residential", loc: "Plot 12, Gurugram", info: "Villa", category: "residential" },
+            { id: "27", title: "Builder Floor Projects, Gurugram", type: "Residential", loc: "Gurugram", info: "Multiple units", category: "residential" },
+            { id: "28", title: "M2K Spring Floors", type: "Residential", loc: "Mayfield Garden, Gurugram", info: "Row houses", category: "residential" },
+            { id: "29", title: "Today Homes Princeton Floors", type: "Residential", loc: "Mayfield Garden, Gurugram", info: "Row houses", category: "residential" },
+            { id: "30", title: "Service Apartment, Kirti Nagar", type: "Hospitality", loc: "House 151, Kirti Nagar, Gurugram", info: "Service apartments", category: "hospitality" },
+            { id: "31", title: "Plot no. 36, Ghitorni, New Delhi", type: "Residential", loc: "New Delhi", info: "Residence", category: "residential" },
+            { id: "32", title: "Plot no. D-313 Sushant Lok-II, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "33", title: "Plot no. 755, Sec-47, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "34", title: "Farmhouse, near Dhauj Sohna, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "35", title: "Plot no. 1504, Sec-46, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "36", title: "Plot no. 3157, Sec-46, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "37", title: "Plot no. D-217, Sushant Lok, Phase 2, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "38", title: "Plot no. 134, Netaji Subhash Enclave, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
         ];
+
+        const categoryProjects = allProjects.filter(p => p.category === "commercial");
         let page = 0;
         const perPage = 6;
         let activeProject = null, activeImages = [], activeIndex = 0;
@@ -117,16 +207,27 @@
         function render() {
             const totalPages = Math.max(1, Math.ceil(categoryProjects.length / perPage));
             if (page > totalPages - 1) page = Math.max(0, totalPages - 1);
+            
             const start = page * perPage;
             const items = categoryProjects.slice(start, start + perPage);
             const grid = document.getElementById('project-grid');
+
             grid.innerHTML = items.map(p => {
-                const imgs = projectImages[p.id] || [];
-                return `<button class="project-card visible text-left group" onclick="openLightbox('${p.id}')" ${!imgs.length ? 'disabled' : ''} aria-label="Open Project ${p.id} gallery">
-                    <div class="aspect-[3/4] mb-7 border border-black/10 bg-white ${imgs.length ? 'project-thumb' : 'image-placeholder'}">
-                        ${imgs.length ? `<img src="${imgs[0]}" alt="Project ${p.id} preview" loading="lazy" class="transition duration-700 group-hover:scale-[1.03]" />` : ''}
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0 opacity-80"></div>
-                        ${imgs.length > 1 ? `<div class="absolute top-3 right-3 border border-white/25 bg-black/40 text-white text-[9px] tracking-[0.35em] uppercase px-3 py-2">${imgs.length} Photos</div>` : ''}
+                const imgList = projectImages[p.id] || [];
+                const hasImages = imgList.length > 0;
+
+                return `
+                <button class="project-card visible text-left group" onclick="openLightbox('${p.id}')" ${!hasImages ? 'disabled' : ''}>
+                    <div class="relative aspect-[3/4] mb-7 border border-black/10 bg-white ${hasImages ? 'project-thumb' : 'image-placeholder'}">
+                        ${hasImages ? `<img src="${imgList[0]}" alt="${p.title}" loading="lazy" class="w-full h-full object-cover transition duration-700 group-hover:scale-[1.03]" />` : ''}
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-70"></div>
+                        
+                        ${imgList.length > 1 ? `
+                            <div class="absolute top-3 right-3 border border-white/25 bg-black/40 text-white text-[9px] tracking-[0.35em] uppercase px-3 py-2 z-20">
+                                ${imgList.length} Photos
+                            </div>
+                        ` : ''}
                     </div>
                     <div>
                         <span class="text-[9px] tracking-[0.35em] uppercase text-zinc-500">Project ${p.id} — ${p.type}</span>
@@ -135,11 +236,17 @@
                     </div>
                 </button>`;
             }).join('');
+
+            // Pagination
             document.getElementById('page-counter').innerHTML = '0' + (page + 1) + ' <span class="text-xl">/ ' + String(totalPages).padStart(2, '0') + '</span>';
             document.getElementById('prevBtn').disabled = page === 0;
             document.getElementById('nextBtn').disabled = page === totalPages - 1;
             document.getElementById('dots').innerHTML = Array.from({ length: totalPages }).map((_, i) => `<div class="w-1 h-1 rounded-full ${i === page ? 'bg-zinc-900' : 'bg-zinc-200'}"></div>`).join('');
-            document.querySelectorAll('.project-card').forEach((el, i) => { el.style.transitionDelay = Math.min(i * 70, 420) + 'ms'; });
+            
+            // Animation trigger
+            document.querySelectorAll('.project-card').forEach((el, i) => { 
+                el.style.transitionDelay = Math.min(i * 70, 420) + 'ms'; 
+            });
         }
         function next() { const totalPages = Math.max(1, Math.ceil(categoryProjects.length / perPage)); if (page >= totalPages - 1) return; page++; render(); window.scrollTo(0, 0); }
         function prev() { if (page === 0) return; page--; render(); window.scrollTo(0, 0); }

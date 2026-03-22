@@ -32,6 +32,22 @@
         .project-thumb { position: relative; overflow: hidden; }
         .project-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+        .project-thumb::after {
+            content: "P HAZARIKA DESIGN STUDIO";
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            font-size: 8px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.65);
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4px 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            z-index: 10;
+        }
+
         .grain::before{
             content:"";
             position:absolute; inset:0;
@@ -145,7 +161,7 @@
                         <div class="mt-10 border-t border-black/10 pt-8">
                             <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">Major clients</div>
                             <p class="text-zinc-700 text-sm leading-relaxed mt-4">
-                                M2k Developer, Today Homz, The Hans Foundation, Esteem Consultants Pvt Ltd, Rider Fininvest Pvt Ltd, Value Homz, DHR Infrastructure, Olive Group, Sun Bright Manpower Solutions Pvt. Ltd. and many renowned builders, clients and professionals.
+                                The Hans Foundation, Esteem Consultants Pvt Ltd, Rider Fininvest Pvt Ltd, Value Homz, DHR Infrastructure, Olive Group, Sun Bright Manpower Solutions Pvt. Ltd. and many renowned builders, clients and professionals.
                             </p>
                         </div>
 
@@ -228,7 +244,7 @@
             <div>
                 <div class="text-[10px] tracking-[0.45em] uppercase text-zinc-500">Archive</div>
                 <h2 class="serif text-5xl md:text-6xl italic font-light mt-4">Selected Works</h2>
-                <p class="text-zinc-500 text-xs mt-4 uppercase tracking-[0.35em]">31 projects</p>
+                <p id="project-total-count" class="text-zinc-500 text-xs mt-4 uppercase tracking-[0.35em]">00 projects</p>
             </div>
             <div id="page-counter" class="text-zinc-400 text-6xl font-light serif">01 <span class="text-xl">/ 05</span></div>
         </div>
@@ -338,7 +354,9 @@
                     <div id="lightbox-counter" class="opacity-80">1 / 1</div>
                 </div>
                 <div class="relative bg-black/30 border border-white/10 overflow-hidden">
-                    <img id="lightbox-img" alt="" class="w-full max-h-[80vh] object-contain bg-black" />
+                    <div class="relative project-thumb">
+                        <img id="lightbox-img" alt="" class="w-full max-h-[80vh] object-contain bg-black" />
+                    </div>
                     <button id="lightbox-prev" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 grid place-items-center text-white/80 hover:text-white border border-white/20 bg-black/30 hover:bg-black/50 transition disabled:opacity-20" aria-label="Previous image">←</button>
                     <button id="lightbox-next" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 grid place-items-center text-white/80 hover:text-white border border-white/20 bg-black/30 hover:bg-black/50 transition disabled:opacity-20" aria-label="Next image">→</button>
                     <button id="lightbox-close" class="absolute right-3 top-3 w-10 h-10 grid place-items-center text-white/80 hover:text-white border border-white/20 bg-black/30 hover:bg-black/50 transition" aria-label="Close gallery">✕</button>
@@ -348,24 +366,23 @@
     </div>
 
     <script>
-        // Images per project (derived from /images folder)
         const projectImages = {
-            "01": ["images/project-01-2.png", "images/project-01.jpg"],
+            "01": ["images/project-01.jpg"],
             "02": ["images/project-02.png"],
-            "03": ["images/project-03.png"],
+            "03": ["images/project-03.jpg"],
             "04": ["images/project-04.png", "images/project-04-2.png"],
-            "05": ["images/project-05.png", "images/project-05-2.png", "images/project-05-3.png", "images/project-05-4.png", "images/project-05-5.png", "images/project-05-6.png", "images/project-05-7.png", "images/project-05-8.png", "images/project-05-9.png", "images/project-05-10.png"],
-            "06": ["images/project-06.png"],
+            "05": ["images/project-05.jpg", "images/project-05-2.png", "images/project-05-3.png", "images/project-05-4.png", "images/project-05-5.png", "images/project-05-6.png", "images/project-05-7.png", "images/project-05-8.png", "images/project-05-9.png", "images/project-05-10.png"],
+            "06": ["images/project-06.jpg"],
             "07": ["images/project-07.png", "images/project-07-2.png"],
-            "08": ["images/project-08.png", "images/project-08-2.png"],
+            "08": ["images/project-08.png", "images/project-08-2.jpg"],
             "09": ["images/project-09.png", "images/project-09-2.png", "images/project-09-3.png"],
             "10": ["images/project-10.png", "images/project-10-2.png"],
             "11": ["images/project-11.png", "images/project-11-2.png"],
-            "12": ["images/project-12.png", "images/project-12-2.png"],
+            "12": ["images/project-12.jpg", "images/project-12-2.png"],
             "13": ["images/project-13.png"],
             "14": ["images/project-14.png"],
-            "15": ["images/project-15.png", "images/project-15-2.png"],
-            "16": ["images/project-16.png", "images/project-16-2.png"],
+            "15": ["images/project-15.jpg", "images/project-15-2.png"],
+            "16": ["images/project-16.png", "images/project-16-2.jpg"],
             "17": ["images/project-17.png", "images/project-17-2.png", "images/project-17-3.png", "images/project-17-4.png", "images/project-17-5.png"],
             "18": ["images/project-18.png", "images/project-18-2.png", "images/project-18-3.png"],
             "19": ["images/project-19-1.png", "images/project-19-2.png", "images/project-19-3.png", "images/project-19-4.png", "images/project-19-5.png", "images/project-19-6.png"],
@@ -373,14 +390,21 @@
             "21": ["images/project-21.png"],
             "22": ["images/project-22.png", "images/project-22-2.png", "images/project-22-3.png", "images/project-22-4.png"],
             "23": ["images/project-23-1.png", "images/project-23-2.png", "images/project-23-3.png", "images/project-23-4.png"],
-            "24": ["images/project-24.png"],
-            "25": ["images/project-25.png"],
-            "26": ["images/project-26.png", "images/project-26-2.png"],
-            "27": ["images/project-27-1.png", "images/project-27-2.png", "images/project-27-3.png", "images/project-27-4.png", "images/project-27-5.png", "images/project-27-6.png"],
+            "24": ["images/project-24.jpg"],
+            "25": ["images/project-25.jpg"],
+            "26": ["images/project-26.png", "images/project-26-2.png", "images/project-26-3.jpg"],
+            "27": ["images/project-27-1.jpg", "images/project-27-2.jpg", "images/project-27-3.jpg", "images/project-27-4.png", "images/project-27-5.jpg", "images/project-27-6.png"],
             "28": ["images/project-28.png"],
             "29": ["images/project-29.png", "images/project-29-2.png"],
             "30": ["images/project-30.png"],
-            "31": ["images/project-31.jpeg"]
+            "31": ["images/project-31.jpeg"],
+            "32": ["images/project-32.jpg"],
+            "33": ["images/project-33.jpg"],
+            "34": ["images/project-34.jpg"],
+            "35": ["images/project-35.jpg"],
+            "36": ["images/project-36.jpg"],
+            "37": ["images/project-37.jpg"],
+            "38": ["images/project-38.jpg"],
         };
 
         // Archive: ordered numerically from Project 01 to Project 31
@@ -415,7 +439,14 @@
             { id: "28", title: "M2K Spring Floors", type: "Residential", loc: "Mayfield Garden, Gurugram", info: "Row houses", category: "residential" },
             { id: "29", title: "Today Homes Princeton Floors", type: "Residential", loc: "Mayfield Garden, Gurugram", info: "Row houses", category: "residential" },
             { id: "30", title: "Service Apartment, Kirti Nagar", type: "Hospitality", loc: "House 151, Kirti Nagar, Gurugram", info: "Service apartments", category: "hospitality" },
-            { id: "31", title: "Project 31", type: "Residential", loc: "Gurugram", info: "Recent work", category: "residential" }
+            { id: "31", title: "Plot no. 36, Ghitorni, New Delhi", type: "Residential", loc: "New Delhi", info: "Residence", category: "residential" },
+            { id: "32", title: "Plot no. D-313 Sushant Lok-II, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "33", title: "Plot no. 755, Sec-47, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "34", title: "Farmhouse, near Dhauj Sohna, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "35", title: "Plot no. 1504, Sec-46, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "36", title: "Plot no. 3157, Sec-46, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "37", title: "Plot no. D-217, Sushant Lok, Phase 2, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
+            { id: "38", title: "Plot no. 134, Netaji Subhash Enclave, Gurugram", type: "Residential", loc: "Gurugram", info: "Residence", category: "residential" },
         ];
 
         let page = 0;
@@ -479,30 +510,40 @@
 
         function render() {
             const grid = document.getElementById('project-grid');
+            document.getElementById('project-total-count').textContent = `${allProjects.length} projects`;
             const totalPages = Math.max(1, Math.ceil(allProjects.length / perPage));
             if (page > totalPages - 1) page = Math.max(0, totalPages - 1);
 
             const start = page * perPage;
             const items = allProjects.slice(start, start + perPage);
 
-            grid.innerHTML = items.map(p => `
-                <button class="project-card text-left group" onclick="openLightbox('${p.id}')" ${((projectImages[p.id] || []).length ? "" : "disabled")} aria-label="Open Project ${p.id} gallery">
-                    <div class="aspect-[3/4] mb-7 border border-black/10 bg-white ${((projectImages[p.id] || []).length ? "project-thumb" : "image-placeholder")}">
-                        ${((projectImages[p.id] || []).length
-                            ? `<img src="${projectImages[p.id][0]}" alt="Project ${p.id} preview" loading="lazy" class="transition duration-700 group-hover:scale-[1.03]" />`
-                            : "")}
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0 opacity-80"></div>
-                        ${((projectImages[p.id] || []).length > 1
-                            ? `<div class="absolute top-3 right-3 border border-white/25 bg-black/40 text-white text-[9px] tracking-[0.35em] uppercase px-3 py-2">${projectImages[p.id].length} Photos</div>`
-                            : "")}
+            grid.innerHTML = items.map(p => {
+            // 1. Define these variables so the computer knows what they are
+            const imgList = projectImages[p.id] || [];
+            const hasImages = imgList.length > 0;
+
+            return `
+                <button class="project-card text-left group" onclick="openLightbox('${p.id}')" ${hasImages ? "" : "disabled"} aria-label="Open Project ${p.id} gallery">
+                    <div class="relative aspect-[3/4] mb-7 border border-black/10 bg-white ${hasImages ? "project-thumb" : "image-placeholder"}">
+                        ${hasImages ? `<img src="${imgList[0]}" alt="${p.title}" loading="lazy" class="w-full h-full object-cover transition duration-700 group-hover:scale-[1.03]" />` : ""}
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-70"></div>
+                        
+                        ${imgList.length > 1 ? `
+                            <div class="absolute top-3 right-3 border border-white/25 bg-black/40 text-white text-[9px] tracking-[0.35em] uppercase px-3 py-2 z-20">
+                                ${imgList.length} Photos
+                            </div>
+                        ` : ""}
                     </div>
+
                     <div>
                         <span class="text-[9px] tracking-[0.35em] uppercase text-zinc-500">Project ${p.id} — ${p.type}</span>
                         <h3 class="serif text-2xl mt-3 font-light italic group-hover:opacity-80 transition">${p.title}</h3>
                         <p class="text-xs text-zinc-600 mt-2 uppercase tracking-[0.35em]">${p.loc} • ${p.info}</p>
                     </div>
                 </button>
-            `).join('');
+            `;
+            }).join('');
 
             const totalLabel = String(totalPages).padStart(2, '0');
             document.getElementById('page-counter').innerHTML = `0${page + 1} <span class="text-xl">/ ${totalLabel}</span>`;
